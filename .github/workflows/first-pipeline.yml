@@ -1,12 +1,18 @@
-name: My First Pipeline
+name: Build C++ Application
 
 on:
   push:
 
 jobs:
-  hello-job:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print Message
-        run: echo "Hello DevOps"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile Program
+        run: g++ main.cpp -o myapp
+
+      - name: Run Program
+        run: ./myapp
